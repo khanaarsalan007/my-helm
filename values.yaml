@@ -1,7 +1,6 @@
-autoscaling:
+helloworld:
   enabled: true
-  maxReplicas: 10
-  minReplicas: 1
-
-rbac:
- create: true
+nginx:
+  enabled: true
+wordpress:
+  enabled: true

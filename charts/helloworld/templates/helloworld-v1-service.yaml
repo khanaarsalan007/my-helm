@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: helloworld
+    version: v1
+  name: helloworld
+  namespace: default
+spec:
+  ports: {{ index .Values "helloworldSVC" "ports" | toYaml | trim | nindent 4 }}
+  selector:
+    app: helloworld
+  type: {{ index .Values "helloworldSVC" "type" }}

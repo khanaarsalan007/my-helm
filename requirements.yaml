@@ -1,0 +1,10 @@
+requirement:
+- condition: wordpress.enabled
+  name: wordpress
+  version: v1
+- condition: nginx.enabled
+  name: nginx
+  version: v1
+- condition: helloworld.enabled
+  name: helloworld
+  version: v1

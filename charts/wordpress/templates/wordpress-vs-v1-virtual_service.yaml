@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    app: wordpress-vs
+    version: v1
+  name: wordpress-vs
+  namespace: default
+spec:
+  hosts:
+  - wordpress
+  http:
+  - route:
+    - destination:
+        host: wordpress
+        port:
+          number: 9000
+        subset: v1
+      weight: 100

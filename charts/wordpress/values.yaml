@@ -1,0 +1,51 @@
+env:
+- name: PATH
+  value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+- name: PHPIZE_DEPS
+  value: "autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c"
+- name: PHP_INI_DIR
+  value: /usr/local/etc/php
+- name: PHP_EXTRA_CONFIGURE_ARGS
+  value: --enable-fpm --with-fpm-user
+- name: PHP_CFLAGS
+  value: -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS
+- name: PHP_CPPFLAGS
+  value: -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS
+- name: PHP_LDFLAGS
+  value: -Wl,-O1 -pie
+- name: GPG_KEYS
+  value: 42670A7FE4D0441C8E4632349E4FDC074A4EF02D 5A52880781F755608BF815FC910DEB46F53EA312
+- name: PHP_VERSION
+  value: 7.4.7
+- name: PHP_URL
+  value: https://www.php.net/distributions/php-7.4.7.tar.xz
+- name: PHP_ASC_URL
+  value: https://www.php.net/distributions/php-7.4.7.tar.xz.asc
+- name: PHP_SHA256
+  value: 53558f8f24cd8ab6fa0ea252ca8198e2650160649681ce5230c1df1dc2b52faf
+- name: PHP_MD5
+  value: gd
+- name: WORDPRESS_VERSION
+  value: 5.4.2
+- name: WORDPRESS_SHA1
+  value: e5631f812232fbd45d3431783d3db2e0d5670d2d
+image:
+  image: wordpress:php7.4-fpm-alpine
+  imagePullSecrets: null
+ports:
+- containerPort: 9000
+prob:
+  livenessProbe: null
+  readinessProbe: null
+replicas: 1
+resources: {}
+
+
+wordpressSVC:
+  ports:
+    - port: 9000
+      name: http-bjlss8
+      protocol: TCP
+      targetPort: 9000
+  type: ClusterIP
+

@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    app: nginx-dr
+    version: v1
+  name: nginx-dr
+  namespace: default
+spec:
+  host: nginx
+  subsets:
+  - labels:
+      version: v1
+    name: v1

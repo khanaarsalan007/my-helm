@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    app: helloworld-dr
+    version: v1
+  name: helloworld-dr
+  namespace: default
+spec:
+  host: helloworld
+  subsets:
+  - labels:
+      version: v1
+    name: v1

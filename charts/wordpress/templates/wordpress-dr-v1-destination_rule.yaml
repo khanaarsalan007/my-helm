@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    app: wordpress-dr
+    version: v1
+  name: wordpress-dr
+  namespace: default
+spec:
+  host: wordpress
+  subsets:
+  - labels:
+      version: v1
+    name: v1
