@@ -1,0 +1,28 @@
+env:
+- name: PATH
+  value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+- name: NODE_VERSION
+  value: 10.15.3
+- name: YARN_VERSION
+  value: 1.13.0
+image:
+  image: cloudplexng/helloworld:12
+  imagePullSecrets: null
+ports:
+- containerPort: 3000
+prob:
+  livenessProbe: null
+  readinessProbe: null
+replicas: 1
+resources: {}
+
+
+helloworldSVC:
+  ports:
+    - port: 3000
+      name: http-4tlzp1
+      protocol: TCP
+      targetPort: 3000
+  type: ClusterIP
+
+
