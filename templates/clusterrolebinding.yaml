@@ -1,0 +1,17 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metdata:
+  labels: {{- include "read-secrets-global.labels" . | nindent 4 }}
+  name: {{ template "read-secrets-global.fullname" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "secret-reader.fullname" . }}
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: manager
+  namespace: null
+
+{{- end }}

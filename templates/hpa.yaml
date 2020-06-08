@@ -1,0 +1,17 @@
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels: {{- include "php-apache.labels" . | nindent 4 }}
+  name: {{ template "php-apache.fullname" . }}
+  namespace: default
+spec:
+  maxReplicas: {{ .Values.autoscaling.maxReplicas | default 5 }}
+  minReplicas: {{ .Values.autoscaling.minReplicas | default 1 }}
+  scaleTargetRef:
+    apiVersion: app/v1
+    kind: Deployment
+    name: {{ template "php-apache.fullname" . }}
+  targetCPUUtilizationPercentage: 50
+
+{{- end }}

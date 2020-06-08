@@ -1,0 +1,7 @@
+autoscaling:
+  enabled: true
+  maxReplicas: 10
+  minReplicas: 1
+
+rbac:
+ create: true
